@@ -380,3 +380,39 @@ input[type="file"] {
     margin-bottom: 12px;
     text-align: center;
 }
+
+/* ===================== RESULTADOS DETALLADOS ===================== */
+.review-item {
+    background-color: #222;
+    color: #ddd;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.review-item.ok {
+    border-left: 6px solid #3ddc97;
+    /* Verde */
+    background-color: #1b2b1b;
+}
+
+.review-item.fail {
+    border-left: 6px solid #e74c3c;
+    /* Rojo */
+    background-color: #2b1b1b;
+}
+
+.review-item strong {
+    color: #fff;
+}
+
+.review-item em {
+    color: #bbb;
+}
+
+.review-item hr {
+    border: none;
+    border-bottom: 1px solid #444;
+    margin: 6px 0;
+}

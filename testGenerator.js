@@ -4,7 +4,7 @@
    ============================================================= */
 
 // === LECTOR DE PDF ===
-async function leerPDF(file) {
+/*async function leerPDF(file) {
     const arrayBuffer = await file.arrayBuffer();
     const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
 
@@ -64,11 +64,13 @@ async function generarTestDesdePDF(file, temaSeleccionado) {
     const texto = await leerPDF(file);
 
     if (!texto || texto.trim().length < 200) {
-        alert("⚠️ No se ha podido extraer texto del PDF. Asegúrate de que no sea una imagen escaneada.");
+        alert(" No se ha podido extraer texto del PDF. Asegúrate de que no sea una imagen escaneada.");
         return null;
     }
 
     const test = generarPreguntasDesdeTexto(texto, temaSeleccionado);
-    console.log(`✅ Test generado para el tema: ${temaSeleccionado}`);
+    console.log(` Test generado para el tema: ${temaSeleccionado}`);
     return test;
-}
+}*/
+
+//Pendiente de mejora//
