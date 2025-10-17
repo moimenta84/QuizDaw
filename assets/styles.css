@@ -1,0 +1,382 @@
+:root {
+    --bg: #17171c;
+    --card: #23232b;
+    --text: #f5f6fa;
+    --muted: #a0a2b3;
+    --accent: #7c5cf3;
+    --accent-weak: #2e2a40;
+    --danger: #ef4444;
+    --ok: #10b981;
+    --border: #343546;
+    --shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    --radius: 16px;
+    --radius-sm: 10px;
+}
+
+/* RESET */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+    background: radial-gradient(circle at 20% 30%, #1b1b22 0%, #121216 100%);
+    color: var(--text);
+    font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    scroll-behavior: smooth;
+}
+
+/* CONTENEDOR GENERAL */
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+/* ESTRUCTURA PRINCIPAL */
+.app {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 900px;
+    gap: 20px;
+}
+
+/* CABECERA */
+.header {
+    background: linear-gradient(135deg, var(--accent), #9b59ff);
+    color: #fff;
+    border-radius: var(--radius);
+    padding: 30px 28px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 30px;
+    margin-bottom: 4px;
+}
+
+.header p {
+    font-size: 15px;
+    opacity: 0.9;
+}
+
+/* PROGRESO */
+.progress {
+    margin-top: 16px;
+    height: 10px;
+    background: #353546;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.progress>span {
+    display: block;
+    height: 100%;
+    background: var(--ok);
+    width: 0%;
+    transition: width .3s ease;
+}
+
+.progress-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 6px;
+}
+
+/* TARJETAS */
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* BOTONES */
+button {
+    border: 0;
+    border-radius: 12px;
+    padding: 12px 18px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all .25s ease;
+    font-family: inherit;
+}
+
+.btn {
+    background: var(--accent);
+    color: #fff;
+}
+
+.btn:hover {
+    background: #9b7eff;
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--accent);
+    border: 2px solid var(--accent);
+}
+
+.btn-outline:hover {
+    background: var(--accent);
+    color: #fff;
+}
+
+.btn-ghost {
+    background: transparent;
+    color: var(--muted);
+}
+
+.btn-ghost:hover {
+    color: var(--accent);
+}
+
+/* CONTROLES */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin: 16px 0;
+}
+
+/* TOOLBAR SUPERIOR */
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: var(--radius-sm);
+    padding: 12px 18px;
+}
+
+/* ==================== INPUT PERSONALIZADO ==================== */
+
+/* Ocultar input nativo */
+input[type="file"] {
+    display: none;
+}
+
+/* Botón visible (label) */
+.file-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: rgba(124, 92, 243, 0.12);
+    color: var(--accent);
+    border: 2px dashed var(--accent);
+    padding: 10px 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 0 0 rgba(124, 92, 243, 0);
+}
+
+.file-label:hover {
+    background: rgba(124, 92, 243, 0.25);
+    color: #fff;
+    border-color: #9b7eff;
+    box-shadow: 0 0 8px rgba(155, 126, 255, 0.5);
+}
+
+.file-label.loaded {
+    border-color: var(--ok);
+    color: var(--ok);
+    background: rgba(16, 185, 129, 0.15);
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+}
+
+/* CHECKBOX */
+.pill {
+    background: var(--accent);
+    color: #fff;
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+/* PREGUNTAS */
+.q-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.q-title {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.q-required {
+    color: var(--danger);
+    margin-left: 6px;
+    font-weight: 700;
+}
+
+.option {
+    display: flex;
+    align-items: flex-start
+}
+
+/* ==================== SELECTOR DE TEMA ==================== */
+.select-curso {
+    appearance: none;
+    /* quita el estilo por defecto del sistema */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: rgba(124, 92, 243, 0.12);
+    color: var(--text);
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 250px;
+    box-shadow: 0 0 0 transparent;
+}
+
+/* Efecto hover */
+.select-curso:hover {
+    background: rgba(124, 92, 243, 0.25);
+    border-color: #9b7eff;
+    color: #fff;
+    box-shadow: 0 0 6px rgba(155, 126, 255, 0.5);
+}
+
+/* Efecto al tener foco (cuando haces clic en él) */
+.select-curso:focus {
+    outline: none;
+    border-color: var(--ok);
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+    background: rgba(124, 92, 243, 0.15);
+}
+
+/* Opciones dentro del desplegable */
+.select-curso option {
+    background-color: #1f1f26;
+    color: var(--text);
+    padding: 10px;
+}
+
+/* Cuando pasa el ratón por encima de una opción */
+.select-curso option:hover {
+    background-color: var(--accent);
+    color: #fff;
+}
+
+/* ======================= GENERADOR DE TEST ======================= */
+#pdfInput {
+    display: none;
+    /* ocultamos el input nativo */
+}
+
+#generarTest {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(124, 92, 243, 0.3);
+    margin: 10px 0 15px 0;
+}
+
+#generarTest:hover {
+    background: #9b7eff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(155, 126, 255, 0.5);
+}
+
+/* Botón de carga visible como etiqueta */
+.pdf-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 18px;
+    border-radius: 12px;
+    border: 2px dashed var(--accent);
+    background: rgba(124, 92, 243, 0.1);
+    color: var(--accent);
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.pdf-label:hover {
+    background: rgba(124, 92, 243, 0.25);
+    color: #fff;
+    border-color: #9b7eff;
+    box-shadow: 0 0 8px rgba(155, 126, 255, 0.5);
+}
+
+/* Área de salida (JSON generado) */
+#output {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px;
+    color: var(--ok);
+    font-family: monospace;
+    font-size: 13px;
+    max-height: 250px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    margin-top: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Animación de carga (cuando se está leyendo el PDF) */
+.generando::after {
+    content: " ⏳ Generando preguntas...";
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 500;
+    margin-left: 8px;
+    animation: blink 1.2s infinite ease-in-out;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0.4;
+    }
+}
+
+/* Mensaje de ayuda inicial */
+.helper {
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 12px;
+    text-align: center;
+}
