@@ -36,7 +36,7 @@ async function cargarTest(ruta = "./Temas/Sostenibilidad.json") {
         console.log(` Test cargado: ${datos.meta.title} (${datos.questions.length} preguntas)`);
         inicializarTest(datos);
     } catch (err) {
-        console.error("❌ Error al cargar el test:", err);
+        console.error(" Error al cargar el test:", err);
         alert("No se pudo cargar el test. Revisa la ruta o el formato del JSON.");
     }
 }
