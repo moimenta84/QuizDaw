@@ -9,7 +9,6 @@
 
 /* ===================== FUNCIONES BÁSICAS ===================== */
 const qs = s => document.querySelector(s); // Selector rápido
-const getId = id => document.getElementById(getId)//Selector id
 const shuffle = arr => arr.sort(() => Math.random() - 0.5); // Mezclar arrays
 
 // Guardar y recuperar estado
@@ -21,71 +20,60 @@ const clearState = () => localStorage.removeItem(KEY);
 /* ===================== ESTADO DEL TEST ===================== */
 let state = {
     temas: [],             // todo el array "Temas" cargado desde el JSON
-    temaActual: null,      // nombre del tema seleccionado (por ejemplo "Sostenibilidad")
+    temaActual: null,      // nombre del tema seleccionado
     preguntas: [],          // solo las preguntas filtradas de ese tema
     indice: 0,              // posición actual dentro del test
     respuestas: {},         // objeto para guardar respuestas del usuario
     completado: false
-    // marca si el test se finalizó o no
 };
+
+/* ===================== CONTADORES DINÁMICOS ===================== */
 const progressLabel = document.getElementById("progress-label");
 const pointsLabel = document.getElementById("points-label");
-let preguntas = [];
-let respuestasUsuario = {};
-let puntos = 0;
 
-// ======= FUNCIÓN PARA RESPONDER =======
-function responder(preguntaId, opcionSeleccionada) {
-    respuestasUsuario[preguntaId] = opcionSeleccionada;
-
-    // Actualizar progreso
-    const respondidas = Object.keys(respuestasUsuario).length;
-    const total = preguntas.length;
+/**
+ * Actualiza los contadores de progreso y puntos
+ */
+function actualizarProgreso() {
+    const respondidas = Object.keys(state.respuestas).length;
+    const total = state.preguntas.length || 0;
     progressLabel.textContent = `${respondidas} / ${total} respondidas`;
 
-    // Recalcular puntos
-    puntos = 0;
-    preguntas.forEach(p => {
-        if (respuestasUsuario[p.id] === p.correcta) puntos++;
-    });
-    pointsLabel.textContent = `${puntos} puntos`;
-}
+    // Calcular puntos actuales
+    let aciertos = 0;
+    for (const p of state.preguntas) {
+        const correcta = p.options.findIndex(o => o.correct);
+        const elegida = state.respuestas[p.id];
+        if (elegida === correcta) aciertos++;
+    }
 
+    pointsLabel.textContent = `${aciertos} puntos`;
+}
 
 /* ===================== CARGA DEL TEST DESDE JSON ===================== */
 async function cargarDatos() {
     try {
-
         const respuesta = await fetch('Temas/datos.json');
-        if (!respuesta.ok) {
-            throw new Error("Error al cargar el archivo JSON");
-        }
+        if (!respuesta.ok) throw new Error("Error al cargar el archivo JSON");
 
         const datos = await respuesta.json();
-
-
         inicializarTest(datos);
         configurarSelectorTemas();
-
     } catch (err) {
-
-        console.error(" Error al cargar el test:", err);
+        console.error("❌ Error al cargar el test:", err);
         alert("No se pudo cargar el test. Revisa la ruta o el formato del JSON.");
-
-        console.error("Error al cargar el test:", err);
-        console.log("No se pudo cargar el test. Revisa la ruta o el formato del JSON.");
-
     }
 }
 
 /* ===================== INICIALIZAR TEST ===================== */
 function inicializarTest(datos) {
-    // 1️Verificar datos de entrada
+    // 1️ Verificar que el JSON tenga formato válido
     if (!datos || !Array.isArray(datos.temas)) {
         console.error("❌ No hay temas válidos para inicializar el test:", datos);
         return;
     }
-    // 2 Cargar el estado base del test
+
+    // 2️ Inicializar el estado base del test
     state.meta = datos.meta || {};
     state.temas = datos.temas || [];
     state.temaActual = null;
@@ -96,101 +84,95 @@ function inicializarTest(datos) {
 
     console.log(` ${state.temas.length} temas cargados correctamente.`);
 
-    // 3️ Mostrar título y descripción del test
-    const titulo = document.querySelector("#quiz-title");
-    const descripcion = document.querySelector("#quiz-desc");
-    if (titulo) titulo.innerHTML = state.meta.title || "Test sin título";
-    if (descripcion) descripcion.innerHTML = state.meta.description || "";
+    // 3️ Actualizar título y descripción dinámicamente
+    const titulo = qs("#quiz-title");
+    const descripcion = qs("#quiz-desc");
 
-    // 4 Cargar el select del toolbar con las asignaturas del JSON
+    if (titulo) {
+        // Si hay título en los metadatos del JSON, úsalo
+        titulo.textContent = 'Daw' || "Test interactivo 2º DAW";
+    }
+
+    if (descripcion) {
+        // Si hay descripción en los metadatos, úsala
+        descripcion.textContent = 'Herramienta de repaso' || "Selecciona un tema para comenzar el cuestionario.";
+    }
+
+    // 4️ Cargar el selector de temas (asignaturas) si existe en el JSON
     const select = document.getElementById("cursoSelect");
     if (select && Array.isArray(state.meta.asignaturas)) {
         select.innerHTML = '<option value="">-- Elegir tema --</option>';
         state.meta.asignaturas.forEach(asig => {
             const opt = document.createElement("option");
             opt.value = asig;
-            opt.innerHTML = asig;
+            opt.textContent = asig;
             select.appendChild(opt);
         });
-        console.log(" Asignaturas cargadas en el select:", state.meta.asignaturas);
+        console.log(" Asignaturas cargadas:", state.meta.asignaturas);
     }
 
-    // 5️ Configurar recuperación de estado guardado (si existe)
+    // 5️ Recuperar estado anterior si existe en localStorage
     const guardado = loadState();
-    if (guardado && guardado.preguntas?.length === state.temas.length) {
-        state.respuestas = guardado.respuestas || {};
-        state.indice = Math.min(guardado.indice || 0, state.temas.length - 1);
+    if (guardado && guardado.temas?.length) {
+        state = guardado;
         console.log("♻️ Estado anterior restaurado.");
     } else {
         clearState();
         console.log(" Estado nuevo inicializado.");
     }
 
-    // 6️Mostrar información inicial
+    // 6️ Render inicial vacío (esperando tema)
     renderizarPregunta();
-    console.log(` Test inicializado: ${state.meta.title}`);
+    actualizarProgreso();
 }
 
-/* ===================== Seleccionar tema Usuario===================== */
+/* ===================== SELECCIONAR TEMA USUARIO ===================== */
 function configurarSelectorTemas() {
     const select = document.getElementById("cursoSelect");
     if (!select) {
-        console.error(" No se encontró el select de curso.");
+        console.error("⚠️ No se encontró el select de curso.");
         return;
     }
 
-    // Escucha el cambio de tema seleccionado
     select.addEventListener("change", e => {
         const seleccion = e.target.value.trim();
         if (!seleccion) return;
 
-        // Actualizar estado
         state.temaActual = seleccion;
         state.preguntas = state.temas.filter(t => t.Asignatura === seleccion);
         state.indice = 0;
         state.respuestas = {};
         state.completado = false;
 
-        console.log(` Tema seleccionado: ${seleccion}`);
-        console.log(` Preguntas encontradas: ${state.preguntas.length}`);
+        console.log(`📚 Tema seleccionado: ${seleccion}`);
+        console.log(`🧩 Preguntas encontradas: ${state.preguntas.length}`);
 
-        // Renderizar primera pregunta
         renderizarPregunta();
+        actualizarProgreso();
     });
 }
 
 /* ===================== MOSTRAR PREGUNTA ===================== */
-
 function renderizarPregunta() {
-    // Selecciona el contenedor principal
     const contenedor = qs("#quiz");
     contenedor.innerHTML = "";
 
-    // Si no hay preguntas cargadas
     if (!state.preguntas || state.preguntas.length === 0) {
         contenedor.innerHTML = '<p class="aviso">Selecciona un tema para comenzar.</p>';
+        actualizarProgreso();
         return;
     }
 
-    // Recupera la pregunta actual
     const pregunta = state.preguntas[state.indice];
-    if (!pregunta) {
-        console.warn("No hay pregunta en el índice actual");
-        return;
-    }
+    if (!pregunta) return;
 
-    console.log("📋 Pregunta actual:", pregunta);
-
-    // === BLOQUE PRINCIPAL DE LA PREGUNTA ===
     const card = document.createElement("section");
     card.className = "pregunta";
 
-    // Título de la pregunta
     const titulo = document.createElement("h3");
     titulo.textContent = `${state.indice + 1}. ${pregunta.question}`;
     card.appendChild(titulo);
 
-    // === OPCIONES ===
     const lista = document.createElement("ul");
 
     pregunta.options.forEach((opt, i) => {
@@ -203,25 +185,24 @@ function renderizarPregunta() {
         input.name = pregunta.id;
         input.value = i;
 
+        if (state.respuestas[pregunta.id] === i) input.checked = true;
+
         const span = document.createElement("span");
         span.textContent = opt.text;
 
-        // Relación DOM correcta
         label.appendChild(input);
         label.appendChild(span);
         li.appendChild(label);
         lista.appendChild(li);
 
-        // Escucha el cambio de selección
         input.addEventListener("change", () => {
-            guardarRespuesta(pregunta.id, i); // guarda el índice de la respuesta
+            guardarRespuesta(pregunta.id, i);
         });
     });
 
     card.appendChild(lista);
     contenedor.appendChild(card);
 
-    // === BOTONES DE NAVEGACIÓN ===
     const prevBtn = qs("#prev");
     const nextBtn = qs("#next");
 
@@ -233,6 +214,7 @@ function renderizarPregunta() {
 function guardarRespuesta(id, indexOpcion) {
     state.respuestas[id] = indexOpcion;
     saveState(state);
+    actualizarProgreso(); // 🔥 actualiza etiquetas
 }
 
 /* ===================== EVALUAR RESULTADOS ===================== */
@@ -244,7 +226,6 @@ function evaluarTest() {
     for (const p of state.preguntas) {
         const correcta = p.options.findIndex(o => o.correct);
         const elegida = state.respuestas[p.id];
-
         const esCorrecta = elegida === correcta;
         if (esCorrecta) puntos++;
 
@@ -256,13 +237,12 @@ function evaluarTest() {
         });
     }
 
-    // Mostrar puntuación
     qs("#score").textContent = `${puntos} / ${total} correctas`;
     qs("#result").style.display = "flex";
+    actualizarProgreso();
 
-    // Generar informe detallado
     const contenedor = qs("#review");
-    contenedor.innerHTML = ""; // Limpia anteriores
+    contenedor.innerHTML = "";
 
     resumen.forEach((r, i) => {
         const item = document.createElement("div");
@@ -270,12 +250,13 @@ function evaluarTest() {
         item.innerHTML = `
             <p><strong>${i + 1}. ${r.pregunta}</strong></p>
             <p>Tu respuesta: <em>${r.elegida}</em></p>
-            ${!r.acierto ? `<p> Correcta: <strong>${r.correcta}</strong></p>` : ""}
+            ${!r.acierto ? `<p>Correcta: <strong>${r.correcta}</strong></p>` : ""}
             <hr>
         `;
         contenedor.appendChild(item);
     });
 
+    pointsLabel.textContent = `${puntos} puntos`;
     window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
@@ -302,26 +283,24 @@ qs("#submit").addEventListener("click", () => {
 
 qs("#retry").addEventListener("click", () => {
     clearState();
-    cargarTest();
+    cargarDatos();
 });
-/* ===================== FUNCIONALIDAD EXTRA ===================== */
 
-/*  BOTÓN: REINICIAR TEST */
+/* ===================== FUNCIONALIDAD EXTRA ===================== */
 qs("#reset").addEventListener("click", () => {
     if (confirm("¿Seguro que quieres reiniciar el test completo?")) {
         clearState();
-        cargarTest();
+        cargarDatos();
     }
 });
 
-/* BOTÓN: BARAJAR PREGUNTAS */
 qs("#shuffle").addEventListener("change", (e) => {
     const activo = e.target.checked;
     if (activo) {
         state.preguntas = shuffle(state.preguntas);
-        state.index = 0;
+        state.indice = 0;
         renderizarPregunta();
-        alert(" Preguntas barajadas");
+        alert("Preguntas barajadas");
     } else {
         alert("El orden se restablecerá al reiniciar el test");
     }
@@ -360,16 +339,6 @@ qs("#export-json").addEventListener("click", () => {
     URL.revokeObjectURL(url);
 });
 
-/* ===================== BOTONES DE RESULTADOS ===================== */
-/*  REINTENTAR */
-qs("#retry").addEventListener("click", () => {
-    if (confirm("¿Quieres volver a intentar el test desde el principio?")) {
-        clearState();
-        cargarTest();
-        qs("#result").style.display = "none";
-    }
-});
-
 /*  DESCARGAR RESULTADOS EN CSV */
 qs("#download-csv").addEventListener("click", () => {
     if (!state.preguntas.length) {
@@ -381,7 +350,6 @@ qs("#download-csv").addEventListener("click", () => {
     for (const p of state.preguntas) {
         const correcta = p.options.findIndex(o => o.correct);
         const elegida = state.respuestas[p.id];
-
         filas.push([
             p.question,
             p.options[elegida]?.text || "No respondida",
@@ -389,7 +357,6 @@ qs("#download-csv").addEventListener("click", () => {
             elegida === correcta ? "Correcta" : "Incorrecta"
         ]);
     }
-
 
     const csv = filas.map(f => f.map(v => `"${v}"`).join(",")).join("\n");
     const blob = new Blob([csv], { type: "text/csv" });
@@ -404,11 +371,19 @@ qs("#download-csv").addEventListener("click", () => {
     URL.revokeObjectURL(url);
 });
 
-
 /* IMPRIMIR RESULTADOS */
 qs("#print").addEventListener("click", () => {
     window.print();
 });
 
 /* ===================== INICIO ===================== */
-cargarDatos(); // ← carga automática de Temas/sostenibilidad.json
+async function iniciar() {
+    await cargarDatos(); // carga general.json (con todos los temas)
+
+    // Reinicia estado sin seleccionar por defecto
+    state.temaActual = null;
+    state.preguntas = [];
+    renderizarPregunta(); // mostrará el mensaje "Selecciona un tema para comenzar"
+}
+
+iniciar();
