@@ -214,9 +214,9 @@ function evaluarTest() {
     const total = state.preguntas.length;
     const resumen = [];
 
-    for (const p of state.questions) {
+    for (const p of state.preguntas) {
         const correcta = p.options.findIndex(o => o.correct);
-        const elegida = state.answers[p.id];
+        const elegida = state.preguntas[p.id];
 
         const esCorrecta = elegida === correcta;
         if (esCorrecta) puntos++;
@@ -255,7 +255,7 @@ function evaluarTest() {
 /* ===================== EVENTOS DE NAVEGACIÓN ===================== */
 qs("#prev").addEventListener("click", () => {
     if (state.indice > 0) {
-        state.index--;
+        state.indice--;
         renderizarPregunta();
     }
 });
@@ -302,7 +302,7 @@ qs("#shuffle").addEventListener("change", (e) => {
 
 /*  BOTÓN: EXPORTAR PLANTILLA (descargar JSON actual) */
 qs("#export-json").addEventListener("click", () => {
-    if (!state.questions.length) {
+    if (!state.preguntas.length) {
         alert("No hay test cargado para exportar.");
         return;
     }
@@ -312,7 +312,7 @@ qs("#export-json").addEventListener("click", () => {
             title: state.meta.title || "Nuevo Test",
             description: state.meta.description || "Plantilla exportada desde Quiz Iker"
         },
-        questions: state.questions.map(q => ({
+        questions: state.preguntas.map(q => ({
             question: q.question,
             options: q.options.map(o => ({
                 text: o.text,
@@ -353,7 +353,7 @@ qs("#download-csv").addEventListener("click", () => {
     const filas = [["Pregunta", "Tu respuesta", "Correcta", "Resultado"]];
     for (const p of state.preguntas) {
         const correcta = p.options.findIndex(o => o.correct);
-        const elegida = state.answers[p.id];
+        const elegida = state.respuestas[p.id];
 
         filas.push([
             p.question,

@@ -1,69 +1,71 @@
-# 🧠 Generador de Tests desde JSON y PDF *(Proyecto DAW)*
+# 🧠 **Quiz Iker — Generador y Visualizador de Tests JSON/PDF**
 
-## 🧾 Autor  
+## 👤 Autor  
 **Iker Martínez Velasco — 2º DAW**
 
 ---
 
-## 🇪🇸 Versión en Español  
+## 🧩 Descripción general
 
-### 🧩 Descripción general
+**Quiz Iker** es una aplicación web interactiva desarrollada con **JavaScript, HTML y CSS** que permite **visualizar, responder y evaluar tests tipo cuestionario**.  
+Los tests se cargan desde archivos **JSON estructurados**, y en futuras versiones se podrán **generar automáticamente desde archivos PDF** mediante análisis de texto.
 
-Este proyecto es una **herramienta educativa desarrollada en JavaScript** que permite **leer y mostrar tests tipo cuestionario almacenados en archivos JSON**.  
-Su objetivo principal es **automatizar la evaluación de contenidos teóricos** y facilitar la reutilización de cuestionarios en diferentes materias, como sostenibilidad, economía circular o desarrollo web.
-
-En su versión actual, el sistema **solo permite cargar tests JSON ya existentes**, mostrando las preguntas y opciones de respuesta.  
-La funcionalidad de **leer archivos PDF y generar automáticamente las preguntas** está **parcialmente desarrollada**, pendiente de implementación final.
+Este proyecto está orientado a entornos educativos (como FP o DAW), con el propósito de **digitalizar evaluaciones teóricas** sin depender de plataformas externas.
 
 ---
 
-## ⚙️ Funcionalidades implementadas (v1.0)
+## ⚙️ **Funcionalidades actuales (v1.0)**
 
-1. **Carga de tests en formato JSON**
-   - Permite seleccionar cualquier archivo `.json` con la estructura correcta.  
-   - Valida que contenga los apartados `meta` y `questions`.  
-   - Muestra el test en pantalla con navegación entre preguntas.  
-   - Corrige automáticamente al pulsar “Enviar” y muestra un informe de resultados.
+### 📥 Carga de tests JSON
+- Permite importar cualquier archivo `.json` con estructura válida (`meta` + `temas` o `questions`).
+- Los datos se muestran dinámicamente: título, descripción, preguntas y opciones de respuesta.
+- El usuario puede navegar entre preguntas con botones “Anterior” y “Siguiente”.
 
-2. **Compatibilidad educativa**
-   - Diseñado para temas de formación profesional (DAW, FP Dual, sostenibilidad, TIC…).  
-   - Permite a docentes y alumnos gestionar tests sin depender de plataformas externas.
+### 🧮 Corrección automática
+- Evalúa las respuestas seleccionadas al enviar el test.  
+- Muestra los resultados:  
+  - Número total de aciertos.  
+  - Respuestas incorrectas con la opción correcta indicada.  
+- Permite **descargar los resultados en formato CSV** o **imprimirlos**.
 
-3. **Informe de corrección**
-   - Muestra cuántas preguntas fueron respondidas correctamente.  
-   - Indica las respuestas erróneas y cuál era la opción correcta.  
-   - Permite **descargar los resultados en CSV** o **imprimirlos directamente**.
+### 💾 Persistencia local
+- Guarda automáticamente el progreso en `localStorage`.  
+- El usuario puede cerrar y reabrir la página sin perder sus respuestas.  
+- Incluye opciones de **reiniciar test** y **barajar preguntas**.
 
-4. **Persistencia local**
-   - Guarda el progreso del alumno en `localStorage` (se puede retomar el test).  
-   - Permite reiniciar y barajar preguntas.
-
-
-
-
-   ## 🧩 Mejoras pendientes (v2.0)
-
-### 1. Lectura y análisis de PDFs
-- Implementar `leerPDF()` con `pdfjsLib` para extraer texto completo.  
-- Procesar el contenido detectando frases explicativas como “es”, “son” o “permite”.  
-- Generar preguntas automáticamente a partir del texto analizado.
-
-### 2. Descarga y exportación automática
-- Añadir botón para descargar el test generado como `.json`.  
-- Validar duplicados y evitar datos vacíos.
-
-### 3. Renderizado interactivo mejorado
-- Mostrar puntaje obtenido.  
-- Indicar respuestas correctas tras el envío.  
-- Posibilidad de volver a intentar el test.
-
-### 4. Integración con GitHub Pages
-- Hacer el proyecto **100 % funcional desde el navegador**.  
-- Permitir al usuario subir un **PDF o JSON** y generar el test en línea.
+### 🎨 Interfaz moderna
+- Estilo oscuro con diseño responsive basado en tarjetas (`.q-card`).  
+- Animaciones suaves en las preguntas y transiciones CSS.  
+- Preguntas y botones con efecto hover, sombreado y colores configurables mediante variables CSS.
 
 ---
 
-## 🧩 Ejemplo de estructura JSON válida
+## 🚧 **Mejoras previstas (v2.0)**
+
+### 📄 1. Generación automática desde PDF
+- Implementar una función `leerPDF()` con **pdf.js**.  
+- Extraer el texto y generar preguntas automáticamente detectando patrones de tipo “es”, “son”, “permite”, etc.  
+- Clasificar y limpiar el texto para crear tests estructurados.
+
+### 💾 2. Exportación avanzada
+- Permitir descargar el test generado en formato `.json`.  
+- Validar la estructura antes de exportar para evitar errores o duplicados.
+
+### 🧩 3. Interactividad avanzada
+- Mostrar puntuación dinámica mientras se responde.  
+- Colorear las respuestas correctas/incorrectas después de enviar.  
+- Permitir **reintentar** el test o **reanudar** desde donde se dejó.
+
+### 🌐 4. Publicación en GitHub Pages
+- Hacer el proyecto **100 % ejecutable desde navegador**.  
+- Permitir cargar un **JSON o PDF local** sin servidor backend.  
+
+---
+
+
+---
+
+## 🧩 **Ejemplo de estructura JSON válida**
 
 ```json
 {
@@ -71,9 +73,10 @@ La funcionalidad de **leer archivos PDF y generar automáticamente las preguntas
     "title": "Test de sostenibilidad",
     "description": "Preguntas sobre los Objetivos de Desarrollo Sostenible"
   },
-  "questions": [
+  "temas": [
     {
       "id": "q1",
+      "Asignatura": "Sostenibilidad",
       "question": "¿Cuál es el objetivo principal de la Agenda 2030?",
       "options": [
         { "text": "Erradicar la pobreza y proteger el planeta", "correct": true },
@@ -84,8 +87,4 @@ La funcionalidad de **leer archivos PDF y generar automáticamente las preguntas
     }
   ]
 }
-
-
----
-
 
