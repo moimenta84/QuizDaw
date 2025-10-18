@@ -207,9 +207,8 @@ function renderizarPregunta() {
 }
 
 /* ===================== GUARDAR RESPUESTA ===================== */
-function guardarRespuesta(id, bloque) {
-    const seleccion = bloque.querySelector(`input[name="${id}"]:checked`);
-    state.respuestas[id] = seleccion ? Number(seleccion.value) : undefined;
+function guardarRespuesta(id, indexOpcion) {
+    state.respuestas[id] = indexOpcion;
     saveState(state);
 }
 
@@ -221,7 +220,7 @@ function evaluarTest() {
 
     for (const p of state.preguntas) {
         const correcta = p.options.findIndex(o => o.correct);
-        const elegida = state.preguntas[p.id];
+        const elegida = state.respuestas[p.id];
 
         const esCorrecta = elegida === correcta;
         if (esCorrecta) puntos++;
