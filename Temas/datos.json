@@ -1,0 +1,217 @@
+{
+    "meta": {
+        "title": "Test de Sostenibilidad y Economía Circular",
+        "description": "Cuestionario de 25 preguntas tipo test sobre desarrollo sostenible, Agenda 2030 y medio ambiente.",
+        "asignaturas": [
+            "Sostenibilidad",
+            "Programación Cliente",
+            "Programación Servidor",
+            "Despliegue de Aplicaciones",
+            "Diseño de Interfaces",
+            "Digitalización",
+            "IPE (Entorno Profesional)"
+        ]
+    },
+    "temas": [
+        {
+            "id": "q1",
+            "Asignatura": "Sostenibilidad",
+            "question": "¿Qué documento definió por primera vez el concepto de desarrollo sostenible?",
+            "options": [
+                {
+                    "text": "Protocolo de Kioto"
+                },
+                {
+                    "text": "Cumbre de Río+20"
+                },
+                {
+                    "text": "Informe Brundtland",
+                    "correct": true
+                },
+                {
+                    "text": "Acuerdo de París"
+                }
+            ]
+        },
+        {
+            "id": "q2",
+            "Asignatura": "Sostenibilidad",
+            "question": "¿Qué organismo impulsó la creación de la Agenda 2030?",
+            "options": [
+                {
+                    "text": "La ONU",
+                    "correct": true
+                },
+                {
+                    "text": "La Unión Europea"
+                },
+                {
+                    "text": "El Banco Mundial"
+                },
+                {
+                    "text": "El FMI"
+                }
+            ]
+        },
+        {
+            "id": "q3",
+            "Asignatura": "Sostenibilidad",
+            "question": "¿Cuántos Objetivos de Desarrollo Sostenible (ODS) incluye la Agenda 2030?",
+            "options": [
+                {
+                    "text": "10"
+                },
+                {
+                    "text": "17",
+                    "correct": true
+                },
+                {
+                    "text": "21"
+                },
+                {
+                    "text": "25"
+                }
+            ]
+        },
+        {
+            "id": "q4",
+            "Asignatura": "Sostenibilidad",
+            "question": "¿Qué mide la huella ecológica?",
+            "options": [
+                {
+                    "text": "El consumo energético doméstico"
+                },
+                {
+                    "text": "El impacto ambiental de nuestras actividades",
+                    "correct": true
+                },
+                {
+                    "text": "El reciclaje de residuos"
+                },
+                {
+                    "text": "El uso del agua"
+                }
+            ]
+        },
+        {
+            "id": "q5",
+            "Asignatura": "Sostenibilidad",
+            "question": "¿Qué se entiende por economía circular?",
+            "options": [
+                {
+                    "text": "Un modelo que busca producir más bienes sin límite"
+                },
+                {
+                    "text": "Un sistema económico que reduce, reutiliza y recicla recursos",
+                    "correct": true
+                },
+                {
+                    "text": "Un método para aumentar el consumo energético"
+                },
+                {
+                    "text": "Una política de libre comercio"
+                }
+            ]
+        },
+        {
+            "id": "q6",
+            "Asignatura": "Sostenibilidad",
+            "question": "¿Cuál de los siguientes materiales es 100% reciclable?",
+            "options": [
+                {
+                    "text": "El cartón plastificado"
+                },
+                {
+                    "text": "El papel encerado"
+                },
+                {
+                    "text": "El vidrio",
+                    "correct": true
+                },
+                {
+                    "text": "Las cápsulas de café"
+                }
+            ]
+        },
+        {
+            "id": "q7",
+            "Asignatura": "Sostenibilidad",
+            "question": "¿Qué gas es responsable del efecto invernadero?",
+            "options": [
+                {
+                    "text": "Nitrógeno"
+                },
+                {
+                    "text": "Dióxido de carbono (CO₂)",
+                    "correct": true
+                },
+                {
+                    "text": "Argón"
+                },
+                {
+                    "text": "Helio"
+                }
+            ]
+        },
+        {
+            "id": "q8",
+            "Asignatura": "Sostenibilidad",
+            "question": "¿Qué objetivo de la Agenda 2030 busca erradicar la pobreza?",
+            "options": [
+                {
+                    "text": "ODS 1",
+                    "correct": true
+                },
+                {
+                    "text": "ODS 5"
+                },
+                {
+                    "text": "ODS 8"
+                },
+                {
+                    "text": "ODS 13"
+                }
+            ]
+        },
+        {
+            "id": "q9",
+            "Asignatura": "Sostenibilidad",
+            "question": "¿Qué representa el ODS 13?",
+            "options": [
+                {
+                    "text": "Educación de calidad"
+                },
+                {
+                    "text": "Acción por el clima",
+                    "correct": true
+                },
+                {
+                    "text": "Producción responsable"
+                },
+                {
+                    "text": "Agua limpia y saneamiento"
+                }
+            ]
+        },
+        {
+            "id": "q10",
+            "Asignatura": "Sostenibilidad",
+            "question": "¿Qué energía se obtiene directamente del sol?",
+            "options": [
+                {
+                    "text": "Energía eólica"
+                },
+                {
+                    "text": "Energía solar",
+                    "correct": true
+                },
+                {
+                    "text": "Energía hidráulica"
+                },
+                {
+                    "text": "Energía geotérmica"
+                }
+            ]
+        }
+    ]
+}
