@@ -25,8 +25,31 @@ let state = {
     preguntas: [],          // solo las preguntas filtradas de ese tema
     indice: 0,              // posición actual dentro del test
     respuestas: {},         // objeto para guardar respuestas del usuario
-    completado: false       // marca si el test se finalizó o no
+    completado: false
+    // marca si el test se finalizó o no
 };
+const progressLabel = document.getElementById("progress-label");
+const pointsLabel = document.getElementById("points-label");
+let preguntas = [];
+let respuestasUsuario = {};
+let puntos = 0;
+
+// ======= FUNCIÓN PARA RESPONDER =======
+function responder(preguntaId, opcionSeleccionada) {
+    respuestasUsuario[preguntaId] = opcionSeleccionada;
+
+    // Actualizar progreso
+    const respondidas = Object.keys(respuestasUsuario).length;
+    const total = preguntas.length;
+    progressLabel.textContent = `${respondidas} / ${total} respondidas`;
+
+    // Recalcular puntos
+    puntos = 0;
+    preguntas.forEach(p => {
+        if (respuestasUsuario[p.id] === p.correcta) puntos++;
+    });
+    pointsLabel.textContent = `${puntos} puntos`;
+}
 
 
 /* ===================== CARGA DEL TEST DESDE JSON ===================== */
