@@ -45,13 +45,13 @@ async function cargarDatos() {
         configurarSelectorTemas();
 
     } catch (err) {
-<<<<<<< HEAD
+
         console.error(" Error al cargar el test:", err);
         alert("No se pudo cargar el test. Revisa la ruta o el formato del JSON.");
-=======
+
         console.error("Error al cargar el test:", err);
         console.log("No se pudo cargar el test. Revisa la ruta o el formato del JSON.");
->>>>>>> frature/render
+
     }
 }
 
