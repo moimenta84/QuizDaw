@@ -416,3 +416,112 @@ input[type="file"] {
     border-bottom: 1px solid #444;
     margin: 6px 0;
 }
+
+/* ===================== OPCIONES DE PREGUNTAS ===================== */
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efecto hover */
+.option:hover {
+    background: rgba(124, 92, 243, 0.12);
+    border-color: var(--accent);
+}
+
+/* Radio personalizado */
+.option input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Punto interior al seleccionar */
+.option input[type="radio"]:checked {
+    background: var(--accent);
+    box-shadow: 0 0 6px rgba(124, 92, 243, 0.7);
+}
+
+/* Texto de la opción */
+.option span {
+    flex: 1;
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.4;
+    transition: color 0.3s ease;
+}
+
+/* Cuando está seleccionada */
+.option input[type="radio"]:checked+span {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* Efecto de selección animado */
+.option:has(input[type="radio"]:checked) {
+    background: rgba(124, 92, 243, 0.15);
+    border-color: var(--accent);
+    box-shadow: 0 0 8px rgba(124, 92, 243, 0.3);
+}
+
+/* ===================== ESTILO DE PREGUNTA ===================== */
+.pregunta {
+    font-size: 15px;
+    font-weight: 600;
+    box-shadow: 0 0 8px rgba(124, 92, 243, 0.3);
+    line-height: 1.5;
+    letter-spacing: 0.3px;
+    margin-bottom: 14px;
+    padding-left: 14px;
+    border-left: 4px solid var(--accent);
+    background: rgba(124, 92, 243, 0.05);
+    border-radius: 8px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    transition: all 0.3s ease;
+}
+
+/* efecto hover sutil */
+.pregunta:hover {
+    color: #fff;
+    border-left-color: #9b7eff;
+    background: rgba(124, 92, 243, 0.12);
+    transform: translateX(4px);
+}
+
+/* Animación de aparición */
+.pregunta {
+    opacity: 0;
+    transform: translateY(8px);
+    animation: fadeSlideIn 0.35s ease forwards;
+}
+
+@keyframes fadeSlideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

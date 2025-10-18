@@ -132,36 +132,41 @@ function configurarSelectorTemas() {
 }
 
 /* ===================== MOSTRAR PREGUNTA ===================== */
+
 function renderizarPregunta() {
+    // Selecciona el contenedor principal
     const contenedor = qs("#quiz");
     contenedor.innerHTML = "";
 
-    if (state.preguntas.length === 0) {
+    // Si no hay preguntas cargadas
+    if (!state.preguntas || state.preguntas.length === 0) {
         contenedor.innerHTML = '<p class="aviso">Selecciona un tema para comenzar.</p>';
         return;
     }
-    //Recupero la pregunta y su indice//
+
+    // Recupera la pregunta actual
     const pregunta = state.preguntas[state.indice];
-
-    console.log("📋 Pregunta actual:", pregunta);
-
-
     if (!pregunta) {
-        console.log('no hay pregunta')
+        console.warn("No hay pregunta en el índice actual");
         return;
     }
 
-    const card = document.createElement("div");
-    card.className = "q-card";
+    console.log("📋 Pregunta actual:", pregunta);
 
-    // Título
+    // === BLOQUE PRINCIPAL DE LA PREGUNTA ===
+    const card = document.createElement("section");
+    card.className = "pregunta";
+
+    // Título de la pregunta
     const titulo = document.createElement("h3");
     titulo.textContent = `${state.indice + 1}. ${pregunta.question}`;
-    contenedor.appendChild(titulo)
+    card.appendChild(titulo);
 
+    // === OPCIONES ===
+    const lista = document.createElement("ul");
 
-    // Opciones//
-    pregunta.option.forEach((opt, i) => {
+    pregunta.options.forEach((opt, i) => {
+        const li = document.createElement("li");
         const label = document.createElement("label");
         label.className = "option";
 
@@ -171,18 +176,29 @@ function renderizarPregunta() {
         input.value = i;
 
         const span = document.createElement("span");
-        span.innerHTML = opt.text;
+        span.textContent = opt.text;
 
-        card.appendChild(label)
-        card.appendChild(input);
-        card.appendChild(span);
-        ;
+        // Relación DOM correcta
+        label.appendChild(input);
+        label.appendChild(span);
+        li.appendChild(label);
+        lista.appendChild(li);
+
+        // Escucha el cambio de selección
+        input.addEventListener("change", () => {
+            guardarRespuesta(pregunta.id, i); // guarda el índice de la respuesta
+        });
     });
-    //activación o desactivación de los botones “Anterior” y “Siguiente”
-    qs("#prev").disabled = state.index === 0;
-    qs("#next").disabled = state.index === state.preguntas.length - 1;
 
-    input.addEventListener("change", () => guardarRespuesta(pregunta.id, bloque));
+    card.appendChild(lista);
+    contenedor.appendChild(card);
+
+    // === BOTONES DE NAVEGACIÓN ===
+    const prevBtn = qs("#prev");
+    const nextBtn = qs("#next");
+
+    if (prevBtn) prevBtn.disabled = state.indice === 0;
+    if (nextBtn) nextBtn.disabled = state.indice === state.preguntas.length - 1;
 }
 
 /* ===================== GUARDAR RESPUESTA ===================== */
