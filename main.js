@@ -69,7 +69,7 @@ async function cargarDatos() {
 function inicializarTest(datos) {
     // 1️ Verificar que el JSON tenga formato válido
     if (!datos || !Array.isArray(datos.temas)) {
-        console.error("❌ No hay temas válidos para inicializar el test:", datos);
+        console.error(" No hay temas válidos para inicializar el test:", datos);
         return;
     }
 
@@ -115,7 +115,7 @@ function inicializarTest(datos) {
     const guardado = loadState();
     if (guardado && guardado.temas?.length) {
         state = guardado;
-        console.log("♻️ Estado anterior restaurado.");
+        console.log(" Estado anterior restaurado.");
     } else {
         clearState();
         console.log(" Estado nuevo inicializado.");
@@ -144,8 +144,8 @@ function configurarSelectorTemas() {
         state.respuestas = {};
         state.completado = false;
 
-        console.log(`📚 Tema seleccionado: ${seleccion}`);
-        console.log(`🧩 Preguntas encontradas: ${state.preguntas.length}`);
+        console.log(` Tema seleccionado: ${seleccion}`);
+        console.log(` Preguntas encontradas: ${state.preguntas.length}`);
 
         renderizarPregunta();
         actualizarProgreso();
@@ -214,7 +214,7 @@ function renderizarPregunta() {
 function guardarRespuesta(id, indexOpcion) {
     state.respuestas[id] = indexOpcion;
     saveState(state);
-    actualizarProgreso(); // 🔥 actualiza etiquetas
+    actualizarProgreso(); //  actualiza etiquetas
 }
 
 /* ===================== EVALUAR RESULTADOS ===================== */
