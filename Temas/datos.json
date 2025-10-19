@@ -1,7 +1,7 @@
 {
     "meta": {
-        "title": "Test de Sostenibilidad y Economía Circular",
-        "description": "Cuestionario de 25 preguntas tipo test sobre desarrollo sostenible, Agenda 2030 y medio ambiente.",
+        "title": "Test General de 2º DAW",
+        "description": "Cuestionario de 25 preguntas tipo test que abarca Sostenibilidad, Programación, Despliegue, Interfaces, Digitalización e IPE.",
         "asignaturas": [
             "Sostenibilidad",
             "Programación Cliente",
@@ -36,27 +36,7 @@
         {
             "id": "q2",
             "Asignatura": "Sostenibilidad",
-            "question": "¿Qué organismo impulsó la creación de la Agenda 2030?",
-            "options": [
-                {
-                    "text": "La ONU",
-                    "correct": true
-                },
-                {
-                    "text": "La Unión Europea"
-                },
-                {
-                    "text": "El Banco Mundial"
-                },
-                {
-                    "text": "El FMI"
-                }
-            ]
-        },
-        {
-            "id": "q3",
-            "Asignatura": "Sostenibilidad",
-            "question": "¿Cuántos Objetivos de Desarrollo Sostenible (ODS) incluye la Agenda 2030?",
+            "question": "¿Cuántos Objetivos de Desarrollo Sostenible (ODS) contiene la Agenda 2030?",
             "options": [
                 {
                     "text": "10"
@@ -74,127 +54,27 @@
             ]
         },
         {
-            "id": "q4",
+            "id": "q3",
             "Asignatura": "Sostenibilidad",
             "question": "¿Qué mide la huella ecológica?",
             "options": [
-                {
-                    "text": "El consumo energético doméstico"
-                },
                 {
                     "text": "El impacto ambiental de nuestras actividades",
                     "correct": true
                 },
                 {
-                    "text": "El reciclaje de residuos"
+                    "text": "El reciclaje doméstico"
                 },
                 {
-                    "text": "El uso del agua"
+                    "text": "El gasto eléctrico mensual"
+                },
+                {
+                    "text": "La contaminación del aire"
                 }
             ]
         },
         {
-            "id": "q5",
-            "Asignatura": "Sostenibilidad",
-            "question": "¿Qué se entiende por economía circular?",
-            "options": [
-                {
-                    "text": "Un modelo que busca producir más bienes sin límite"
-                },
-                {
-                    "text": "Un sistema económico que reduce, reutiliza y recicla recursos",
-                    "correct": true
-                },
-                {
-                    "text": "Un método para aumentar el consumo energético"
-                },
-                {
-                    "text": "Una política de libre comercio"
-                }
-            ]
-        },
-        {
-            "id": "q6",
-            "Asignatura": "Sostenibilidad",
-            "question": "¿Cuál de los siguientes materiales es 100% reciclable?",
-            "options": [
-                {
-                    "text": "El cartón plastificado"
-                },
-                {
-                    "text": "El papel encerado"
-                },
-                {
-                    "text": "El vidrio",
-                    "correct": true
-                },
-                {
-                    "text": "Las cápsulas de café"
-                }
-            ]
-        },
-        {
-            "id": "q7",
-            "Asignatura": "Sostenibilidad",
-            "question": "¿Qué gas es responsable del efecto invernadero?",
-            "options": [
-                {
-                    "text": "Nitrógeno"
-                },
-                {
-                    "text": "Dióxido de carbono (CO₂)",
-                    "correct": true
-                },
-                {
-                    "text": "Argón"
-                },
-                {
-                    "text": "Helio"
-                }
-            ]
-        },
-        {
-            "id": "q8",
-            "Asignatura": "Sostenibilidad",
-            "question": "¿Qué objetivo de la Agenda 2030 busca erradicar la pobreza?",
-            "options": [
-                {
-                    "text": "ODS 1",
-                    "correct": true
-                },
-                {
-                    "text": "ODS 5"
-                },
-                {
-                    "text": "ODS 8"
-                },
-                {
-                    "text": "ODS 13"
-                }
-            ]
-        },
-        {
-            "id": "q9",
-            "Asignatura": "Sostenibilidad",
-            "question": "¿Qué representa el ODS 13?",
-            "options": [
-                {
-                    "text": "Educación de calidad"
-                },
-                {
-                    "text": "Acción por el clima",
-                    "correct": true
-                },
-                {
-                    "text": "Producción responsable"
-                },
-                {
-                    "text": "Agua limpia y saneamiento"
-                }
-            ]
-        },
-        {
-            "id": "q10",
+            "id": "q4",
             "Asignatura": "Sostenibilidad",
             "question": "¿Qué energía se obtiene directamente del sol?",
             "options": [
@@ -210,6 +90,426 @@
                 },
                 {
                     "text": "Energía geotérmica"
+                }
+            ]
+        },
+        {
+            "id": "q5",
+            "Asignatura": "Programación Cliente",
+            "question": "¿Qué lenguaje se ejecuta directamente en el navegador?",
+            "options": [
+                {
+                    "text": "Python"
+                },
+                {
+                    "text": "JavaScript",
+                    "correct": true
+                },
+                {
+                    "text": "PHP"
+                },
+                {
+                    "text": "C#"
+                }
+            ]
+        },
+        {
+            "id": "q6",
+            "Asignatura": "Programación Cliente",
+            "question": "¿Qué API permite manipular el contenido HTML desde JavaScript?",
+            "options": [
+                {
+                    "text": "DOM",
+                    "correct": true
+                },
+                {
+                    "text": "BOM"
+                },
+                {
+                    "text": "JSON"
+                },
+                {
+                    "text": "HTTP"
+                }
+            ]
+        },
+        {
+            "id": "q7",
+            "Asignatura": "Programación Cliente",
+            "question": "¿Qué método añade un evento de clic a un elemento?",
+            "options": [
+                {
+                    "text": "addEventListener('click')",
+                    "correct": true
+                },
+                {
+                    "text": "onTap()"
+                },
+                {
+                    "text": "detectClick()"
+                },
+                {
+                    "text": "clickHandler()"
+                }
+            ]
+        },
+        {
+            "id": "q8",
+            "Asignatura": "Programación Cliente",
+            "question": "¿Qué propiedad CSS se usa para crear animaciones?",
+            "options": [
+                {
+                    "text": "animation",
+                    "correct": true
+                },
+                {
+                    "text": "display"
+                },
+                {
+                    "text": "hover"
+                },
+                {
+                    "text": "float"
+                }
+            ]
+        },
+        {
+            "id": "q9",
+            "Asignatura": "Programación Servidor",
+            "question": "¿Qué lenguaje se ejecuta en el servidor en entornos web?",
+            "options": [
+                {
+                    "text": "JavaScript"
+                },
+                {
+                    "text": "PHP",
+                    "correct": true
+                },
+                {
+                    "text": "HTML"
+                },
+                {
+                    "text": "CSS"
+                }
+            ]
+        },
+        {
+            "id": "q10",
+            "Asignatura": "Programación Servidor",
+            "question": "¿Qué significa CRUD?",
+            "options": [
+                {
+                    "text": "Create, Read, Update, Delete",
+                    "correct": true
+                },
+                {
+                    "text": "Copy, Run, Upload, Debug"
+                },
+                {
+                    "text": "Connect, Read, Use, Drop"
+                },
+                {
+                    "text": "Code, Reuse, Update, Deploy"
+                }
+            ]
+        },
+        {
+            "id": "q11",
+            "Asignatura": "Programación Servidor",
+            "question": "¿Qué es un ORM?",
+            "options": [
+                {
+                    "text": "Object Relational Mapping",
+                    "correct": true
+                },
+                {
+                    "text": "Online Resource Manager"
+                },
+                {
+                    "text": "Output Result Mode"
+                },
+                {
+                    "text": "Object Response Manager"
+                }
+            ]
+        },
+        {
+            "id": "q12",
+            "Asignatura": "Programación Servidor",
+            "question": "¿Qué framework de PHP sigue el patrón MVC?",
+            "options": [
+                {
+                    "text": "React"
+                },
+                {
+                    "text": "Laravel",
+                    "correct": true
+                },
+                {
+                    "text": "Bootstrap"
+                },
+                {
+                    "text": "Tailwind"
+                }
+            ]
+        },
+        {
+            "id": "q13",
+            "Asignatura": "Despliegue de Aplicaciones",
+            "question": "¿Qué herramienta se usa para controlar versiones de código?",
+            "options": [
+                {
+                    "text": "Git",
+                    "correct": true
+                },
+                {
+                    "text": "Jenkins"
+                },
+                {
+                    "text": "Nginx"
+                },
+                {
+                    "text": "Docker"
+                }
+            ]
+        },
+        {
+            "id": "q14",
+            "Asignatura": "Despliegue de Aplicaciones",
+            "question": "¿Qué significa CI/CD?",
+            "options": [
+                {
+                    "text": "Continuous Integration / Continuous Deployment",
+                    "correct": true
+                },
+                {
+                    "text": "Code Injection / Code Delivery"
+                },
+                {
+                    "text": "Central Integration / Custom Deployment"
+                },
+                {
+                    "text": "Continuous Installation / Continuous Debug"
+                }
+            ]
+        },
+        {
+            "id": "q15",
+            "Asignatura": "Despliegue de Aplicaciones",
+            "question": "¿Qué archivo define servicios en un proyecto Docker?",
+            "options": [
+                {
+                    "text": "docker-compose.yml",
+                    "correct": true
+                },
+                {
+                    "text": "package.json"
+                },
+                {
+                    "text": "index.html"
+                },
+                {
+                    "text": "config.ini"
+                }
+            ]
+        },
+        {
+            "id": "q16",
+            "Asignatura": "Despliegue de Aplicaciones",
+            "question": "¿Qué comando se usa para clonar un repositorio remoto?",
+            "options": [
+                {
+                    "text": "git clone",
+                    "correct": true
+                },
+                {
+                    "text": "git copy"
+                },
+                {
+                    "text": "git fetch"
+                },
+                {
+                    "text": "git push"
+                }
+            ]
+        },
+        {
+            "id": "q17",
+            "Asignatura": "Diseño de Interfaces",
+            "question": "¿Qué principio busca que los elementos sean comprensibles a simple vista?",
+            "options": [
+                {
+                    "text": "Usabilidad",
+                    "correct": true
+                },
+                {
+                    "text": "Rendimiento"
+                },
+                {
+                    "text": "Escalabilidad"
+                },
+                {
+                    "text": "Compatibilidad"
+                }
+            ]
+        },
+        {
+            "id": "q18",
+            "Asignatura": "Diseño de Interfaces",
+            "question": "¿Qué color transmite confianza y se usa en interfaces financieras?",
+            "options": [
+                {
+                    "text": "Azul",
+                    "correct": true
+                },
+                {
+                    "text": "Rojo"
+                },
+                {
+                    "text": "Amarillo"
+                },
+                {
+                    "text": "Verde"
+                }
+            ]
+        },
+        {
+            "id": "q19",
+            "Asignatura": "Diseño de Interfaces",
+            "question": "¿Qué técnica CSS permite adaptar el diseño a distintos tamaños de pantalla?",
+            "options": [
+                {
+                    "text": "@media queries",
+                    "correct": true
+                },
+                {
+                    "text": "overflow"
+                },
+                {
+                    "text": "display: flex"
+                },
+                {
+                    "text": "opacity"
+                }
+            ]
+        },
+        {
+            "id": "q20",
+            "Asignatura": "Digitalización",
+            "question": "¿Qué significa transformación digital?",
+            "options": [
+                {
+                    "text": "Uso estratégico de tecnología para mejorar procesos",
+                    "correct": true
+                },
+                {
+                    "text": "Comprar más ordenadores"
+                },
+                {
+                    "text": "Eliminar al personal"
+                },
+                {
+                    "text": "Automatizar redes sin planificación"
+                }
+            ]
+        },
+        {
+            "id": "q21",
+            "Asignatura": "Digitalización",
+            "question": "¿Qué tecnología permite almacenar información en la nube?",
+            "options": [
+                {
+                    "text": "Cloud computing",
+                    "correct": true
+                },
+                {
+                    "text": "Blockchain"
+                },
+                {
+                    "text": "Big Data"
+                },
+                {
+                    "text": "Machine Learning"
+                }
+            ]
+        },
+        {
+            "id": "q22",
+            "Asignatura": "Digitalización",
+            "question": "¿Qué herramienta permite colaboración en tiempo real en documentos?",
+            "options": [
+                {
+                    "text": "Google Workspace",
+                    "correct": true
+                },
+                {
+                    "text": "Photoshop"
+                },
+                {
+                    "text": "Excel 2003"
+                },
+                {
+                    "text": "FTP Local"
+                }
+            ]
+        },
+        {
+            "id": "q23",
+            "Asignatura": "Digitalización",
+            "question": "¿Qué tecnología se asocia con el registro seguro de transacciones?",
+            "options": [
+                {
+                    "text": "Blockchain",
+                    "correct": true
+                },
+                {
+                    "text": "IoT"
+                },
+                {
+                    "text": "VPN"
+                },
+                {
+                    "text": "RAID"
+                }
+            ]
+        },
+        {
+            "id": "q24",
+            "Asignatura": "IPE (Entorno Profesional)",
+            "question": "¿Qué documento define el perfil profesional del técnico en DAW?",
+            "options": [
+                {
+                    "text": "El Real Decreto del título",
+                    "correct": true
+                },
+                {
+                    "text": "El convenio colectivo"
+                },
+                {
+                    "text": "El plan de empresa"
+                },
+                {
+                    "text": "El contrato laboral"
+                }
+            ]
+        },
+        {
+            "id": "q25",
+            "Asignatura": "IPE (Entorno Profesional)",
+            "question": "¿Qué actitud favorece la empleabilidad?",
+            "options": [
+                {
+                    "text": "La responsabilidad y adaptación al cambio",
+                    "correct": true
+                },
+                {
+                    "text": "La pasividad"
+                },
+                {
+                    "text": "El individualismo"
+                },
+                {
+                    "text": "La falta de motivación"
                 }
             ]
         }
